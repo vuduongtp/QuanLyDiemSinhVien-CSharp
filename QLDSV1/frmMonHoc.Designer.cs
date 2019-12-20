@@ -40,6 +40,7 @@
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnTaiLai = new DevExpress.XtraBars.BarButtonItem();
+            this.btnTaiLai1 = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -61,7 +62,6 @@
             this.mAMHTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.dIEMBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dIEMTableAdapter = new QLDSV1.DSTableAdapters.DIEMTableAdapter();
-            this.btnTaiLai1 = new DevExpress.XtraBars.BarButtonItem();
             mAMHLabel = new System.Windows.Forms.Label();
             tENMHLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -189,6 +189,15 @@
             this.btnTaiLai.Name = "btnTaiLai";
             this.btnTaiLai.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaiLai_ItemClick);
             // 
+            // btnTaiLai1
+            // 
+            this.btnTaiLai1.Caption = "Tải lại";
+            this.btnTaiLai1.Id = 7;
+            this.btnTaiLai1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTaiLai1.ImageOptions.Image")));
+            this.btnTaiLai1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnTaiLai1.ImageOptions.LargeImage")));
+            this.btnTaiLai1.Name = "btnTaiLai1";
+            this.btnTaiLai1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaiLai1_ItemClick);
+            // 
             // bar3
             // 
             this.bar3.BarName = "Status bar";
@@ -207,15 +216,15 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(881, 24);
+            this.barDockControlTop.Size = new System.Drawing.Size(882, 24);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 420);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 501);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(881, 23);
+            this.barDockControlBottom.Size = new System.Drawing.Size(882, 23);
             // 
             // barDockControlLeft
             // 
@@ -223,15 +232,15 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 396);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 477);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(881, 24);
+            this.barDockControlRight.Location = new System.Drawing.Point(882, 24);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 396);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 477);
             // 
             // panel1
             // 
@@ -240,7 +249,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(881, 53);
+            this.panel1.Size = new System.Drawing.Size(882, 53);
             this.panel1.TabIndex = 4;
             // 
             // label1
@@ -291,12 +300,12 @@
             // mONHOCGridControl
             // 
             this.mONHOCGridControl.DataSource = this.bdsMonHoc;
-            this.mONHOCGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mONHOCGridControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.mONHOCGridControl.Location = new System.Drawing.Point(0, 77);
             this.mONHOCGridControl.MainView = this.gridView1;
             this.mONHOCGridControl.MenuManager = this.barManager1;
             this.mONHOCGridControl.Name = "mONHOCGridControl";
-            this.mONHOCGridControl.Size = new System.Drawing.Size(881, 343);
+            this.mONHOCGridControl.Size = new System.Drawing.Size(882, 312);
             this.mONHOCGridControl.TabIndex = 16;
             this.mONHOCGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -330,10 +339,10 @@
             this.groupBox1.Controls.Add(this.tENMHTextEdit);
             this.groupBox1.Controls.Add(mAMHLabel);
             this.groupBox1.Controls.Add(this.mAMHTextEdit);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox1.Location = new System.Drawing.Point(0, 310);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 389);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(881, 110);
+            this.groupBox1.Size = new System.Drawing.Size(882, 112);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nội dung";
@@ -366,20 +375,11 @@
             // 
             this.dIEMTableAdapter.ClearBeforeFill = true;
             // 
-            // btnTaiLai1
-            // 
-            this.btnTaiLai1.Caption = "Tải lại";
-            this.btnTaiLai1.Id = 7;
-            this.btnTaiLai1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.btnTaiLai1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.btnTaiLai1.Name = "btnTaiLai1";
-            this.btnTaiLai1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaiLai1_ItemClick);
-            // 
             // frmMonHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(881, 443);
+            this.ClientSize = new System.Drawing.Size(882, 524);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.mONHOCGridControl);
             this.Controls.Add(this.panel1);
