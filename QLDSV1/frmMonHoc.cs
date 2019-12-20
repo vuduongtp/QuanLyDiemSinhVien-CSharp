@@ -53,20 +53,16 @@ namespace QLDSV1
         {
             // TODO: This line of code loads data into the 'DS.V_DS_PHANMANH' table. You can move, or remove it, as needed.
             this.v_DS_PHANMANHTableAdapter.Fill(this.DS.V_DS_PHANMANH);
-            // TODO: This line of code loads data into the 'DS.V_DS_PHANMANH' table. You can move, or remove it, as needed.
-            this.v_DS_PHANMANHTableAdapter.Fill(this.DS.V_DS_PHANMANH);
-            // TODO: This line of code loads data into the 'DS.V_DS_PHANMANH' table. You can move, or remove it, as needed.
-            this.v_DS_PHANMANHTableAdapter.Fill(this.DS.V_DS_PHANMANH);
 
             // TODO: This line of code loads data into the 'dS.MONHOC' table. You can move, or remove it, as needed.
 
             // TODO: This line of code loads data into the 'dS.MONHOC' table. You can move, or remove it, as needed.
-            this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
-            // TODO: This line of code loads data into the 'DS.DIEM' table. You can move, or remove it, as needed.
-            // TODO: This line of code loads data into the 'DS.DIEM' table. You can move, or remove it, as needed.
-            this.dIEMTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.dIEMTableAdapter.Fill(this.DS.DIEM);
+            //this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
+            //// TODO: This line of code loads data into the 'DS.DIEM' table. You can move, or remove it, as needed.
+            //// TODO: This line of code loads data into the 'DS.DIEM' table. You can move, or remove it, as needed.
+            //this.dIEMTableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.dIEMTableAdapter.Fill(this.DS.DIEM);
 
 
 
@@ -75,9 +71,11 @@ namespace QLDSV1
             //Program.conn.Open();
             //DataTable dt = new DataTable();
             //dt = Program.ExecSqlDataTable("SELECT * FROM V_DS_PHANMANH where TENKHOA not like '%KT%'");
-            //cmbChiNhanh.DataSource = dt;
+
+           // cmbChiNhanh.DataSource = dt;
             cmbChiNhanh.DisplayMember = "TENKHOA";
             cmbChiNhanh.ValueMember = "TENSERVER";
+            cmbChiNhanh.SelectedIndex = -1;
             cmbChiNhanh.SelectedIndex = Program.mChinhanh;
             if (Program.mGroup == "PGV")
             {
@@ -102,7 +100,6 @@ namespace QLDSV1
                 try
                 {
                     Program.servername = cmbChiNhanh.SelectedValue.ToString();
-                    Program.mChinhanh = cmbChiNhanh.SelectedIndex;
                     if (Program.servername.Equals(Program.tenServerDN))
                     {
                         Program.mlogin = Program.mloginDN;

@@ -28,11 +28,11 @@ namespace QLDSV1
             // TODO: This line of code loads data into the 'dS.V_DS_PHANMANH' table. You can move, or remove it, as needed.
             this.v_DS_PHANMANHTableAdapter.Fill(this.dS.V_DS_PHANMANH);
             // TODO: This line of code loads data into the 'dS.LOP' table. You can move, or remove it, as needed.
-            this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.lOPTableAdapter.Fill(this.dS.LOP);
-            // TODO: This line of code loads data into the 'dS.SINHVIEN' table. You can move, or remove it, as needed.
-            this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.sINHVIENTableAdapter.Fill(this.dS.SINHVIEN);
+            //this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.lOPTableAdapter.Fill(this.dS.LOP);
+            //// TODO: This line of code loads data into the 'dS.SINHVIEN' table. You can move, or remove it, as needed.
+            //this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.sINHVIENTableAdapter.Fill(this.dS.SINHVIEN);
 
             //chuoiketnoi = "Data Source=VUDUONG;Initial Catalog=QLDSV;Integrated Security=True";
             //Program.conn.ConnectionString = chuoiketnoi;
@@ -40,8 +40,10 @@ namespace QLDSV1
             //DataTable dt = new DataTable();
             //dt = Program.ExecSqlDataTable("SELECT * FROM V_DS_PHANMANH where TENKHOA not like '%KT%'");
             //cmbChiNhanh.DataSource = dt;
+
             cmbChiNhanh.DisplayMember = "TENKHOA";
             cmbChiNhanh.ValueMember = "TENSERVER";
+            cmbChiNhanh.SelectedIndex = -1;
             cmbChiNhanh.SelectedIndex = Program.mChinhanh;
             if (Program.mGroup == "PGV")
             {
@@ -63,7 +65,6 @@ namespace QLDSV1
                 try
                 {
                     Program.servername = cmbChiNhanh.SelectedValue.ToString();
-                    Program.mChinhanh = cmbChiNhanh.SelectedIndex;
                     if (Program.servername.Equals(Program.tenServerDN))
                     {
                         Program.mlogin = Program.mloginDN;
