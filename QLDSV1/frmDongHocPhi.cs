@@ -77,7 +77,7 @@ namespace QLDSV1
                 btnGhi.Enabled = btnQuayLai.Enabled = btnTaiLai.Enabled = false;
                 bdsHocPhi.RemoveFilter();
                 //bdsHocPhi.DataSource = null; ;
-                MessageBox.Show("Không tìm thấy sinh viên có mã " + masv + ". Vui lòng nhập lại!", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show("Không tìm thấy sinh viên có mã " + txtMaSV.Text.Trim() + ". Vui lòng nhập lại!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
 

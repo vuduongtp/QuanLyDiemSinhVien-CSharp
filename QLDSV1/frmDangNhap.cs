@@ -30,7 +30,7 @@ namespace QLDSV1
             tENKHOAComboBox.DisplayMember = "TENKHOA";
             tENKHOAComboBox.ValueMember = "TENSERVER";
             tENKHOAComboBox.SelectedIndex = 1;
-            tENKHOAComboBox.SelectedIndex = 2;
+            tENKHOAComboBox.SelectedIndex = 0;
 
         }
 
@@ -73,6 +73,7 @@ namespace QLDSV1
             }
             Program.mHoten = Program.myReader.GetString(1);
             Program.mGroup = Program.myReader.GetString(2);
+            Program.tenServerDN = tENKHOAComboBox.ValueMember.ToString();
             Program.myReader.Close();
             Program.conn.Close();
             //Program.frmChinh.MAGV.Text = "Mã giảng viên: " + Program.username;

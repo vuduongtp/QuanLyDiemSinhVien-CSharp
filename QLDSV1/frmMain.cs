@@ -46,5 +46,18 @@ namespace QLDSV1
             HOTEN.Text = "Họ tên: " + Program.mHoten;
             NHOM.Text = "Nhóm: " + Program.mGroup;
         }
+
+        private void btnSinhVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmSinhVien));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmSinhVien f = new frmSinhVien();
+                f.MdiParent = this;
+                f.Show();
+
+            }
+        }
     }
 }

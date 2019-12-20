@@ -103,7 +103,7 @@
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(322, 26);
             this.txtLogin.TabIndex = 4;
-            this.txtLogin.Text = "pttoan";
+            this.txtLogin.Text = "nahao";
             // 
             // label2
             // 

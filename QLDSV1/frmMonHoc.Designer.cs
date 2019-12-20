@@ -62,6 +62,8 @@
             this.mAMHTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.dIEMBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dIEMTableAdapter = new QLDSV1.DSTableAdapters.DIEMTableAdapter();
+            this.v_DS_PHANMANHBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.v_DS_PHANMANHTableAdapter = new QLDSV1.DSTableAdapters.V_DS_PHANMANHTableAdapter();
             mAMHLabel = new System.Windows.Forms.Label();
             tENMHLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -74,6 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tENMHTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAMHTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dIEMBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mAMHLabel
@@ -249,13 +252,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(882, 53);
+            this.panel1.Size = new System.Drawing.Size(882, 54);
             this.panel1.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(259, 23);
+            this.label1.Location = new System.Drawing.Point(263, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 17);
             this.label1.TabIndex = 1;
@@ -263,11 +266,14 @@
             // 
             // cmbChiNhanh
             // 
+            this.cmbChiNhanh.DataSource = this.v_DS_PHANMANHBindingSource;
+            this.cmbChiNhanh.DisplayMember = "TENKHOA";
             this.cmbChiNhanh.FormattingEnabled = true;
             this.cmbChiNhanh.Location = new System.Drawing.Point(357, 15);
             this.cmbChiNhanh.Name = "cmbChiNhanh";
             this.cmbChiNhanh.Size = new System.Drawing.Size(177, 25);
             this.cmbChiNhanh.TabIndex = 0;
+            this.cmbChiNhanh.ValueMember = "TENSERVER";
             this.cmbChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cmbChiNhanh_SelectedIndexChanged);
             // 
             // DS
@@ -301,7 +307,7 @@
             // 
             this.mONHOCGridControl.DataSource = this.bdsMonHoc;
             this.mONHOCGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.mONHOCGridControl.Location = new System.Drawing.Point(0, 77);
+            this.mONHOCGridControl.Location = new System.Drawing.Point(0, 78);
             this.mONHOCGridControl.MainView = this.gridView1;
             this.mONHOCGridControl.MenuManager = this.barManager1;
             this.mONHOCGridControl.Name = "mONHOCGridControl";
@@ -340,9 +346,9 @@
             this.groupBox1.Controls.Add(mAMHLabel);
             this.groupBox1.Controls.Add(this.mAMHTextEdit);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 389);
+            this.groupBox1.Location = new System.Drawing.Point(0, 390);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(882, 112);
+            this.groupBox1.Size = new System.Drawing.Size(882, 111);
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nội dung";
@@ -375,6 +381,15 @@
             // 
             this.dIEMTableAdapter.ClearBeforeFill = true;
             // 
+            // v_DS_PHANMANHBindingSource
+            // 
+            this.v_DS_PHANMANHBindingSource.DataMember = "V_DS_PHANMANH";
+            this.v_DS_PHANMANHBindingSource.DataSource = this.DS;
+            // 
+            // v_DS_PHANMANHTableAdapter
+            // 
+            this.v_DS_PHANMANHTableAdapter.ClearBeforeFill = true;
+            // 
             // frmMonHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -405,6 +420,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tENMHTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAMHTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dIEMBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -442,5 +458,7 @@
         private DSTableAdapters.DIEMTableAdapter dIEMTableAdapter;
         private DevExpress.XtraEditors.TextEdit tENMHTextEdit;
         private DevExpress.XtraBars.BarButtonItem btnTaiLai1;
+        private System.Windows.Forms.BindingSource v_DS_PHANMANHBindingSource;
+        private DSTableAdapters.V_DS_PHANMANHTableAdapter v_DS_PHANMANHTableAdapter;
     }
 }

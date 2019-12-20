@@ -51,7 +51,13 @@ namespace QLDSV1
 
         private void frmMonHoc_Load(object sender, EventArgs e)
         {
-            
+            // TODO: This line of code loads data into the 'DS.V_DS_PHANMANH' table. You can move, or remove it, as needed.
+            this.v_DS_PHANMANHTableAdapter.Fill(this.DS.V_DS_PHANMANH);
+            // TODO: This line of code loads data into the 'DS.V_DS_PHANMANH' table. You can move, or remove it, as needed.
+            this.v_DS_PHANMANHTableAdapter.Fill(this.DS.V_DS_PHANMANH);
+            // TODO: This line of code loads data into the 'DS.V_DS_PHANMANH' table. You can move, or remove it, as needed.
+            this.v_DS_PHANMANHTableAdapter.Fill(this.DS.V_DS_PHANMANH);
+
             // TODO: This line of code loads data into the 'dS.MONHOC' table. You can move, or remove it, as needed.
 
             // TODO: This line of code loads data into the 'dS.MONHOC' table. You can move, or remove it, as needed.
@@ -64,12 +70,12 @@ namespace QLDSV1
 
 
 
-            chuoiketnoi = "Data Source=VUDUONG;Initial Catalog=QLDSV;Integrated Security=True";
-            Program.conn.ConnectionString = chuoiketnoi;
-            Program.conn.Open();
-            DataTable dt = new DataTable();
-            dt = Program.ExecSqlDataTable("SELECT * FROM V_DS_PHANMANH where TENKHOA not like '%KT%'");
-            cmbChiNhanh.DataSource = dt;
+            //chuoiketnoi = "Data Source=VUDUONG;Initial Catalog=QLDSV;Integrated Security=True";
+            //Program.conn.ConnectionString = chuoiketnoi;
+            //Program.conn.Open();
+            //DataTable dt = new DataTable();
+            //dt = Program.ExecSqlDataTable("SELECT * FROM V_DS_PHANMANH where TENKHOA not like '%KT%'");
+            //cmbChiNhanh.DataSource = dt;
             cmbChiNhanh.DisplayMember = "TENKHOA";
             cmbChiNhanh.ValueMember = "TENSERVER";
             cmbChiNhanh.SelectedIndex = Program.mChinhanh;
@@ -90,37 +96,45 @@ namespace QLDSV1
 
         private void cmbChiNhanh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbChiNhanh.SelectedValue.ToString() != "System.Data.DataRowView")
-            {             
-                Program.servername = cmbChiNhanh.SelectedValue.ToString();
-            }
-            if (cmbChiNhanh.SelectedIndex == Program.mChinhanh)
+           
+            if (Program.mGroup.Equals("PGV"))
             {
-                
-                Program.mlogin = Program.mloginDN;
-                Program.password = Program.passwordDN;
-
-            }
-            if (cmbChiNhanh.SelectedIndex != Program.mChinhanh && Program.mGroup == "PGV")
+                try
                 {
-                    
-                    Program.mlogin = Program.remotelogin;
-                    Program.password = Program.remotepassword;
+                    Program.servername = cmbChiNhanh.SelectedValue.ToString();
+                    Program.mChinhanh = cmbChiNhanh.SelectedIndex;
+                    if (Program.servername.Equals(Program.tenServerDN))
+                    {
+                        Program.mlogin = Program.mloginDN;
+                        Program.password = Program.passwordDN;
+                        DataConnection dc = new DataConnection();
+
+                    }
+                    else
+                    {
+                        Program.mlogin = Program.remotelogin;
+                        Program.password = Program.remotepassword;
+                        DataConnection dc = new DataConnection();
+
+                    }
 
                 }
-                //else
-                //{
-                //    MessageBox.Show("Login này không có quyền truy cập dữ liệu của Khoa khác.", "", MessageBoxButtons.OK);
-                //}
-            
+                catch (Exception)
+                {
+
+
+                }
+            }
+            stack.Clear();
+
             if (Program.KetNoi() == 0)
             {
                 MessageBox.Show("Loi ket noi.", "Thông báo", MessageBoxButtons.OK);
-                
+
             }
             else
             {
-                
+
                 this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
                 this.dIEMTableAdapter.Connection.ConnectionString = Program.connstr;

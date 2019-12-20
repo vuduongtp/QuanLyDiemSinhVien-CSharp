@@ -31,6 +31,7 @@ namespace QLDSV1
         public static String mGroup = "";
         public static String mHoten = "";
         public static int mChinhanh = 0;
+        public static String tenServerDN = "";
 
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập
 
