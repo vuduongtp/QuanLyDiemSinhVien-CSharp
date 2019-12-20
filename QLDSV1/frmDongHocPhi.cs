@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +19,22 @@ namespace QLDSV1
         int chucnang = 0;// xac dinh them, xoa, sua
         int hocky_edit=0;
         string nienkhoa_edit = "";
+        int hocphi_edit = 0;
+        int sotiendadong_edit = 0;
+
+        public Stack stack = new Stack();
+        public class KhoiPhuc
+        {
+            int chucnang;
+            String nienKhoa;
+            int hocKy;
+            String lenh;
+
+            public int Chucnang { get => chucnang; set => chucnang = value; }
+            public string NienKhoa { get => nienKhoa; set => nienKhoa = value; }
+            public string Lenh { get => lenh; set => lenh = value; }
+            public int HocKy { get => hocKy; set => hocKy = value; }
+        }
 
         public frmDongHocPhi()
         {
@@ -37,7 +55,14 @@ namespace QLDSV1
                 bdsHocPhi.Filter = "MASV = '"+masv+"'";
                 gridControl1.Enabled = true;
                 btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = true;
-                btnPhucHoi.Enabled = true;
+                if (stack.Count > 0)
+                {
+                    btnPhucHoi.Enabled = true;
+                }
+                else
+                {
+                    btnPhucHoi.Enabled = false;
+                }
             }
             else
             {
@@ -56,7 +81,7 @@ namespace QLDSV1
                 return;
             }
 
-            
+            Program.myReader.Close();
         }
 
         private void frmDongHocPhi_Load(object sender, EventArgs e)
@@ -90,22 +115,52 @@ namespace QLDSV1
         {
             groupBox2.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
-            btnPhucHoi.Enabled = true;
             btnGhi.Enabled = btnQuayLai.Enabled = false;
             gridControl1.Enabled = true;
             this.bdsHocPhi.CancelEdit();
             this.bdsHocPhi.Position = vitri;
             btnTimKiem.Enabled = btnTaiLai.Enabled = true;
+            if (stack.Count > 0)
+            {
+                btnPhucHoi.Enabled = true;
+            }
+            else
+            {
+                btnPhucHoi.Enabled = false;
+            }
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             chucnang = 3;
+            bool check_xoa = true;
             if (DialogResult.Yes == MessageBox.Show("Bạn có chắc chắn muốn xoá? ", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
+                check_xoa = false;
+                KhoiPhuc kp = new KhoiPhuc();
+                kp.Chucnang = chucnang;
+                kp.NienKhoa = nIENKHOATextEdit.Text.Trim();
+                kp.HocKy = Int32.Parse(hOCKYTextEdit.Text.Trim());
+                kp.Lenh = "INSERT INTO HOCPHI(MASV, NIENKHOA, HOCKY, HOCPHI, SOTIENDADONG) VALUES('" + masv + "','" + nIENKHOATextEdit.Text.Trim() + "'," + Int32.Parse(hOCKYTextEdit.Text.Trim()) + "," + Int32.Parse(hOCPHITextEdit.Text.Trim()) + "," + Int32.Parse(sOTIENDADONGTextEdit.Text.Trim()) + ")";
+                stack.Push(kp);
+
                 this.bdsHocPhi.RemoveCurrent();
                 this.hOCPHITableAdapter.Connection.ConnectionString = Program.connstr;
                 this.hOCPHITableAdapter.Update(this.dS.HOCPHI);
+                check_xoa = true;
+            }
+
+            if (check_xoa == false)
+            {
+                stack.Pop();
+            }
+            if (stack.Count > 0)
+            {
+                btnPhucHoi.Enabled = true;
+            }
+            else
+            {
+                btnPhucHoi.Enabled = false;
             }
         }
 
@@ -113,6 +168,8 @@ namespace QLDSV1
         {
             chucnang = 2;
             nienkhoa_edit = nIENKHOATextEdit.Text.Trim();
+            hocphi_edit= Int32.Parse(hOCPHITextEdit.Text.Trim());
+            sotiendadong_edit = Int32.Parse(sOTIENDADONGTextEdit.Text.Trim());
             hocky_edit = Int32.Parse(hOCKYTextEdit.Text.Trim());
             vitri = bdsHocPhi.Position;
             groupBox2.Enabled = true;
@@ -200,19 +257,106 @@ namespace QLDSV1
             {
                 MessageBox.Show("Lỗi ghi học phí: " + ex, "Thông báo", MessageBoxButtons.OK);
             }
+
+            if(chucnang==1)//thêm
+            {
+                KhoiPhuc kp = new KhoiPhuc();
+                kp.Chucnang = chucnang;
+                kp.NienKhoa = nIENKHOATextEdit.Text.Trim();
+                kp.HocKy = Int32.Parse(hOCKYTextEdit.Text.Trim());
+                kp.Lenh = "DELETE FROM HOCPHI WHERE MASV ='" +masv+ "' and NIENKHOA=N'"+nIENKHOATextEdit.Text.Trim()+"' and HOCKY="+ Int32.Parse(hOCKYTextEdit.Text.Trim());
+                stack.Push(kp);
+            }
+
+            if (chucnang == 2)//sua
+            {
+                KhoiPhuc kp = new KhoiPhuc();
+                kp.Chucnang = chucnang;
+                kp.NienKhoa = nIENKHOATextEdit.Text.Trim();
+                kp.HocKy = Int32.Parse(hOCKYTextEdit.Text.Trim());
+                kp.Lenh = "UPDATE HOCPHI SET NIENKHOA=N'"+nienkhoa_edit+"',HOCKY="+hocky_edit+",HOCPHI="+hocphi_edit+",SOTIENDADONG="+sotiendadong_edit+" WHERE MASV=N'" + masv + "'and NIENKHOA=N'" + nIENKHOATextEdit.Text.Trim() + "' and HOCKY=" + Int32.Parse(hOCKYTextEdit.Text.Trim());
+                stack.Push(kp);
+            }
+
             groupBox2.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
-            btnPhucHoi.Enabled = true;
             btnGhi.Enabled = btnQuayLai.Enabled = false;
             gridControl1.Enabled = true;
             Program.myReader.Close();
             btnTimKiem.Enabled = btnTaiLai.Enabled = true;
+            if (stack.Count > 0)
+            {
+                btnPhucHoi.Enabled = true;
+            }
+            else
+            {
+                btnPhucHoi.Enabled = false;
+            }
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {//nut tai lai
             this.hOCPHITableAdapter.Fill(this.dS.HOCPHI);
             bdsHocPhi.Filter = "MASV = '" + masv + "'";
+        }
+
+        private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            KhoiPhuc kp = (KhoiPhuc)stack.Pop();
+            if (kp.Chucnang == 1)//them
+            {
+
+                SqlCommand sqlcom = new SqlCommand(kp.Lenh, Program.conn);
+                try
+                {
+                    sqlcom.ExecuteNonQuery();
+                    MessageBox.Show("Đã xoá học phí niên khoá " + kp.NienKhoa+", học kỳ "+kp.HocKy);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (kp.Chucnang == 2)//sua
+            {
+
+                SqlCommand sqlcom = new SqlCommand(kp.Lenh, Program.conn);
+                try
+                {
+                    sqlcom.ExecuteNonQuery();
+                    MessageBox.Show("Đã sửa lại học phí niên khoá " + kp.NienKhoa + ", học kỳ " + kp.HocKy);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (kp.Chucnang == 3)//xoá
+            {
+
+                SqlCommand sqlcom = new SqlCommand(kp.Lenh, Program.conn);
+                try
+                {
+                    sqlcom.ExecuteNonQuery();
+                    MessageBox.Show("Đã thêm lại học phí niên khoá " + kp.NienKhoa + ", học kỳ " + kp.HocKy);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            this.hOCPHITableAdapter.Fill(this.dS.HOCPHI);
+            bdsHocPhi.Filter = "MASV = '" + masv + "'";
+
+            if (stack.Count > 0)
+            {
+                btnPhucHoi.Enabled = true;
+            }
+            else
+            {
+                btnPhucHoi.Enabled = false;
+            }
         }
     }
 }

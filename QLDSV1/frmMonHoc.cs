@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,7 +18,23 @@ namespace QLDSV1
         string chuoiketnoi;
         int chucnang = 0;// xac dinh them, xoa, sua
         string mamh_edit = "";
+        string tenmh_edit="";
         // string connstr_origin = Program.connstr;// gan chuoi ket noi mac dinh
+
+        public Stack stack = new Stack();
+        public class KhoiPhuc
+        {
+            int chucnang;
+            String maMH;
+            String tenMH;
+            String lenh;
+
+            public int Chucnang { get => chucnang; set => chucnang = value; }
+            public string MaMH { get => maMH; set => maMH = value; }
+            public string TenMH { get => tenMH; set => tenMH = value; }
+            public string Lenh { get => lenh; set => lenh = value; }
+        }
+
 
         public frmMonHoc()
         {
@@ -123,7 +141,7 @@ namespace QLDSV1
             btnGhi.Enabled = btnTaiLai.Enabled = true;
             mONHOCGridControl.Enabled = btnTaiLai1.Enabled = false;
             //mAMHTextEdit.Enabled = tENMHTextEdit.Enabled = true;
-
+        
         }
 
         private void mONHOCBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
@@ -138,17 +156,23 @@ namespace QLDSV1
         {
 
         }
-
+        bool check = false;//check xem mon hoc da co diem chua
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (Program.myReader != null) Program.myReader.Close();
+            String strLenh = "Select TOP 1 MAMH from LINK0.QLDSV.dbo.DIEM where MAMH = '" + mAMHTextEdit.Text.Trim() + "'";
+            Program.myReader = Program.ExecSqlDataReader(strLenh);
+            check = Program.myReader.Read();
             chucnang = 2;
             mamh_edit = mAMHTextEdit.Text.Trim();
+            tenmh_edit = tENMHTextEdit.Text.Trim();
             cmbChiNhanh.Enabled = false;
             vitri = bdsMonHoc.Position;
             groupBox1.Enabled = true;
             btnPhucHoi.Enabled = btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnTaiLai1.Enabled = false;
             btnGhi.Enabled = btnTaiLai.Enabled=true;
             mONHOCGridControl.Enabled = false;
+            Program.myReader.Close();
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs ex)
@@ -179,6 +203,12 @@ namespace QLDSV1
 
             if (chucnang == 2)//sua
             {
+                
+                if (String.Equals(mAMHTextEdit.Text.Trim(), mamh_edit)==false && check==true)
+                {
+                    MessageBox.Show("Không thể sửa mã môn học đã có điểm!", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
                 if (Program.myReader.Read() && String.Equals(Program.myReader.GetString(0).Trim(), mamh_edit) == false)
                 {
                     MessageBox.Show("Mã môn học bị trùng. Vui lòng nhập lại!", "Thông báo", MessageBoxButtons.OK);
@@ -198,19 +228,103 @@ namespace QLDSV1
                 {
                     MessageBox.Show("Lỗi ghi môn học: " + e, "Thông báo", MessageBoxButtons.OK);
                 }
+
+            if (chucnang == 1)//them
+            {
+                KhoiPhuc kp = new KhoiPhuc();
+                kp.Chucnang = chucnang;
+                kp.MaMH = mAMHTextEdit.Text.Trim();
+                kp.TenMH = tENMHTextEdit.Text.Trim();
+                kp.Lenh = "DELETE FROM MONHOC WHERE MAMH ='" + mAMHTextEdit.Text.Trim()+"'";
+                stack.Push(kp);
+            }
+            if (chucnang == 2)//sua
+            {
+                KhoiPhuc kp = new KhoiPhuc();
+                kp.Chucnang = chucnang;
+                kp.MaMH = mAMHTextEdit.Text.Trim();
+                kp.TenMH = tENMHTextEdit.Text.Trim();
+                kp.Lenh= "UPDATE MONHOC SET MAMH=N'"+mamh_edit+"',TENMH=N'"+tenmh_edit+"' WHERE MAMH=N'"+ mAMHTextEdit.Text.Trim()+"'";
+                stack.Push(kp);
+            }
+
                 groupBox1.Enabled = false;
                 btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
-                btnPhucHoi.Enabled = btnTaiLai1.Enabled = true;
+                btnTaiLai1.Enabled = true;
                 btnGhi.Enabled = btnTaiLai.Enabled = false; 
                 mONHOCGridControl.Enabled = true;
                 cmbChiNhanh.Enabled = true;
+                if (stack.Count > 0)
+                {
+                    btnPhucHoi.Enabled = true;
+                }
+                else
+                {
+                    btnPhucHoi.Enabled = false;
+                }
                 Program.myReader.Close();
 
         }
 
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            KhoiPhuc kp = (KhoiPhuc)stack.Pop();
+            if (kp.Chucnang == 1)//them
+            {
+                
+                SqlCommand sqlcom = new SqlCommand(kp.Lenh, Program.conn);
+                try
+                {
+                    sqlcom.ExecuteNonQuery();
+                    MessageBox.Show("Đã xoá môn học "+kp.TenMH);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
 
+            if (kp.Chucnang == 2)//sua
+            {
+                SqlCommand sqlcom = new SqlCommand(kp.Lenh, Program.conn);
+                try
+                {
+                    sqlcom.ExecuteNonQuery();
+                    MessageBox.Show("Đã sửa lại môn học " + kp.TenMH);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(kp.Lenh);
+                }
+            }
+
+            if (kp.Chucnang == 3)//xoa
+            {
+                SqlCommand sqlcom = new SqlCommand(kp.Lenh, Program.conn);
+                try
+                {
+                    sqlcom.ExecuteNonQuery();
+                    MessageBox.Show("Đã thêm lại môn học " + kp.TenMH);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
+            this.dIEMTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.dIEMTableAdapter.Fill(this.DS.DIEM);
+            if (stack.Count > 0)
+            {
+                btnPhucHoi.Enabled = true;
+            }
+            else
+            {
+                btnPhucHoi.Enabled = false;
+            }
         }
 
         private void btnTaiLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -218,17 +332,27 @@ namespace QLDSV1
             groupBox1.Enabled = false;
             cmbChiNhanh.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
-            btnPhucHoi.Enabled = btnTaiLai1.Enabled = true;
+            btnTaiLai1.Enabled = true;
             btnGhi.Enabled = btnTaiLai.Enabled=false;
             mONHOCGridControl.Enabled = true;
+            if (stack.Count > 0)
+            {
+                btnPhucHoi.Enabled = true;
+            }
+            else
+            {
+                btnPhucHoi.Enabled = false;
+            }
             this.bdsMonHoc.CancelEdit();
             this.bdsMonHoc.Position=vitri;
+
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             chucnang = 3;
-            if(Program.myReader!=null) Program.myReader.Close();
+            bool check_xoa = true;
+            if (Program.myReader!=null) Program.myReader.Close();
             String strLenh = "Select TOP 1 MAMH from LINK0.QLDSV.dbo.DIEM where MAMH = '" + mAMHTextEdit.Text.Trim() + "'";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader.Read())
@@ -238,11 +362,32 @@ namespace QLDSV1
             }
             if (DialogResult.Yes == MessageBox.Show("Bạn có chắc chắn muốn xoá môn học "+tENMHTextEdit.Text.Trim()+" ?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
+                check_xoa = false;
+                KhoiPhuc kp = new KhoiPhuc();
+                kp.Chucnang = 3;
+                kp.MaMH = mAMHTextEdit.Text.Trim();
+                kp.TenMH = tENMHTextEdit.Text.Trim();
+                kp.Lenh= "INSERT INTO MONHOC(MAMH, TENMH) VALUES('" + mAMHTextEdit.Text.Trim() + "','" + tENMHTextEdit.Text.Trim() + "')";
+                stack.Push(kp);
+
                 this.bdsMonHoc.RemoveCurrent();
                 this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.mONHOCTableAdapter.Update(this.DS.MONHOC);
+                check_xoa = true;
+            }
+            if (check_xoa == false)
+            {
+                stack.Pop();
             }
             Program.myReader.Close();
+            if (stack.Count > 0)
+            {
+                btnPhucHoi.Enabled = true;
+            }
+            else
+            {
+                btnPhucHoi.Enabled = false;
+            }
         }
 
         private void btnTaiLai1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -251,6 +396,14 @@ namespace QLDSV1
             this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
             this.dIEMTableAdapter.Connection.ConnectionString = Program.connstr;
             this.dIEMTableAdapter.Fill(this.DS.DIEM);
+            if (stack.Count > 0)
+            {
+                btnPhucHoi.Enabled = true;
+            }
+            else
+            {
+                btnPhucHoi.Enabled = false;
+            }
         }
     }
 }

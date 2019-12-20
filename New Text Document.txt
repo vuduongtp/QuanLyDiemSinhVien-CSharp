@@ -1,0 +1,34 @@
+public Stack st = new Stack();
+        public class ObjectUndo
+        {
+            int type;
+            String lenh;
+
+            public ObjectUndo(int t, String l)
+            {
+                this.type = t;
+                this.lenh = l;
+            }
+
+            public int getType()
+            {
+                return type;
+            }
+            public String getLenh()
+            {
+                return lenh;
+            }
+        }
+
+
+String lenh = "exec SP_UndoThemNhanVien '" + mANVSpinEdit.Text + "'";
+ObjectUndo ob = new ObjectUndo(type, lenh);
+
+ObjectUndo ob = (ObjectUndo)st.Pop();
+if (ob.getType() == 3)
+                    {
+                        MessageBox.Show("Khôi phục sau khi sửa " + ob.getLenh());
+                        Program.ExecSqlDataReader(ob.getLenh());
+                        this.nHANVIENTableAdapter.Fill(this.qL_VATTUDataSet.NHANVIEN);
+                        return;
+                    }
