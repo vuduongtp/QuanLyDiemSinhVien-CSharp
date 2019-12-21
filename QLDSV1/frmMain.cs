@@ -45,6 +45,10 @@ namespace QLDSV1
             MAGV.Text = "Mã giảng viên: " + Program.username;
             HOTEN.Text = "Họ tên: " + Program.mHoten;
             NHOM.Text = "Nhóm: " + Program.mGroup;
+            if (Program.mGroup != "PGV")
+            {
+                btnChuyenLop.Enabled = false;
+            }
         }
 
         private void btnSinhVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -54,6 +58,19 @@ namespace QLDSV1
             else
             {
                 frmSinhVien f = new frmSinhVien();
+                f.MdiParent = this;
+                f.Show();
+
+            }
+        }
+
+        private void btnChuyenLop_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmChuyenLop));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmChuyenLop f = new frmChuyenLop();
                 f.MdiParent = this;
                 f.Show();
 

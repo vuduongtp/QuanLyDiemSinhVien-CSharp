@@ -15,7 +15,6 @@ namespace QLDSV1
     public partial class frmMonHoc : Form
     {
         int vitri;
-        string chuoiketnoi;
         int chucnang = 0;// xac dinh them, xoa, sua
         string mamh_edit = "";
         string tenmh_edit="";
@@ -84,6 +83,7 @@ namespace QLDSV1
             else
             {
                 cmbChiNhanh.Enabled = false;
+                btnGhi.Enabled = btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             }
             groupBox1.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = btnTaiLai.Enabled = false;
@@ -122,7 +122,6 @@ namespace QLDSV1
 
                 }
             }
-            stack.Clear();
 
             if (Program.KetNoi() == 0)
             {
@@ -131,12 +130,20 @@ namespace QLDSV1
             }
             else
             {
-
+                stack.Clear();
                 this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.mONHOCTableAdapter.Fill(this.DS.MONHOC);
                 this.dIEMTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.dIEMTableAdapter.Fill(this.DS.DIEM);
 
+            }
+            if (stack.Count > 0)
+            {
+                btnPhucHoi.Enabled = true;
+            }
+            else
+            {
+                btnPhucHoi.Enabled = false;
             }
 
         }
@@ -183,6 +190,7 @@ namespace QLDSV1
             btnPhucHoi.Enabled = btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnTaiLai1.Enabled = false;
             btnGhi.Enabled = btnTaiLai.Enabled=true;
             mONHOCGridControl.Enabled = false;
+            mAMHTextEdit.Enabled = false;
             Program.myReader.Close();
         }
 
@@ -264,6 +272,7 @@ namespace QLDSV1
                 btnTaiLai1.Enabled = true;
                 btnGhi.Enabled = btnTaiLai.Enabled = false; 
                 mONHOCGridControl.Enabled = true;
+                mAMHTextEdit.Enabled = true;
                 cmbChiNhanh.Enabled = true;
                 if (stack.Count > 0)
                 {
@@ -345,6 +354,7 @@ namespace QLDSV1
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
             btnTaiLai1.Enabled = true;
             btnGhi.Enabled = btnTaiLai.Enabled=false;
+            mAMHTextEdit.Enabled = true;
             mONHOCGridControl.Enabled = true;
             if (stack.Count > 0)
             {
