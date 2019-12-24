@@ -46,5 +46,18 @@ namespace QLDSV1
 
             }
         }
+
+        private void btnInHocPhi_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmInHocPhi));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmInHocPhi f = new frmInHocPhi();
+                f.MdiParent = this;
+                f.Show();
+
+            }
+        }
     }
 }

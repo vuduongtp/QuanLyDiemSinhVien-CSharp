@@ -38,8 +38,8 @@
             System.Windows.Forms.Label nOISINHLabel;
             System.Windows.Forms.Label dIACHILabel;
             System.Windows.Forms.Label gHICHULabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSinhVien));
             System.Windows.Forms.Label nGHIHOCLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSinhVien));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
@@ -70,6 +70,7 @@
             this.nOISINHTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.nGAYSINHDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.pHAICheckEdit = new DevExpress.XtraEditors.RadioGroup();
+            this.nGHIHOCCheckEdit = new DevExpress.XtraEditors.RadioGroup();
             this.gridControlLop = new DevExpress.XtraGrid.GridControl();
             this.bdsLop = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewLop = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -92,7 +93,6 @@
             this.tableAdapterManager = new QLDSV1.DSTableAdapters.TableAdapterManager();
             this.lOPTableAdapter = new QLDSV1.DSTableAdapters.LOPTableAdapter();
             this.v_DS_PHANMANHTableAdapter = new QLDSV1.DSTableAdapters.V_DS_PHANMANHTableAdapter();
-            this.nGHIHOCCheckEdit = new DevExpress.XtraEditors.RadioGroup();
             mASVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
@@ -120,94 +120,103 @@
             ((System.ComponentModel.ISupportInitialize)(this.nGAYSINHDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nGAYSINHDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pHAICheckEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nGHIHOCCheckEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlLop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewLop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSinhVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewSinhVien)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nGHIHOCCheckEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // mASVLabel
             // 
             mASVLabel.AutoSize = true;
-            mASVLabel.Location = new System.Drawing.Point(36, 42);
+            mASVLabel.Location = new System.Drawing.Point(15, 42);
             mASVLabel.Name = "mASVLabel";
-            mASVLabel.Size = new System.Drawing.Size(53, 17);
+            mASVLabel.Size = new System.Drawing.Size(90, 17);
             mASVLabel.TabIndex = 0;
-            mASVLabel.Text = "MASV:";
+            mASVLabel.Text = "Mã sinh viên :";
             // 
             // hOLabel
             // 
             hOLabel.AutoSize = true;
-            hOLabel.Location = new System.Drawing.Point(36, 72);
+            hOLabel.Location = new System.Drawing.Point(15, 72);
             hOLabel.Name = "hOLabel";
             hOLabel.Size = new System.Drawing.Size(33, 17);
             hOLabel.TabIndex = 2;
-            hOLabel.Text = "HO:";
+            hOLabel.Text = "Họ :";
             // 
             // tENLabel
             // 
             tENLabel.AutoSize = true;
-            tENLabel.Location = new System.Drawing.Point(36, 104);
+            tENLabel.Location = new System.Drawing.Point(15, 104);
             tENLabel.Name = "tENLabel";
-            tENLabel.Size = new System.Drawing.Size(40, 17);
+            tENLabel.Size = new System.Drawing.Size(38, 17);
             tENLabel.TabIndex = 4;
-            tENLabel.Text = "TEN:";
+            tENLabel.Text = "Tên :";
             // 
             // mALOPLabel
             // 
             mALOPLabel.AutoSize = true;
-            mALOPLabel.Location = new System.Drawing.Point(36, 139);
+            mALOPLabel.Location = new System.Drawing.Point(15, 139);
             mALOPLabel.Name = "mALOPLabel";
-            mALOPLabel.Size = new System.Drawing.Size(64, 17);
+            mALOPLabel.Size = new System.Drawing.Size(57, 17);
             mALOPLabel.TabIndex = 6;
-            mALOPLabel.Text = "MALOP:";
+            mALOPLabel.Text = "Mã lớp :";
             // 
             // pHAILabel
             // 
             pHAILabel.AutoSize = true;
-            pHAILabel.Location = new System.Drawing.Point(36, 166);
+            pHAILabel.Location = new System.Drawing.Point(15, 165);
             pHAILabel.Name = "pHAILabel";
-            pHAILabel.Size = new System.Drawing.Size(47, 17);
+            pHAILabel.Size = new System.Drawing.Size(41, 17);
             pHAILabel.TabIndex = 8;
-            pHAILabel.Text = "PHAI:";
+            pHAILabel.Text = "Phái :";
             // 
             // nGAYSINHLabel
             // 
             nGAYSINHLabel.AutoSize = true;
-            nGAYSINHLabel.Location = new System.Drawing.Point(311, 40);
+            nGAYSINHLabel.Location = new System.Drawing.Point(327, 40);
             nGAYSINHLabel.Name = "nGAYSINHLabel";
-            nGAYSINHLabel.Size = new System.Drawing.Size(88, 17);
+            nGAYSINHLabel.Size = new System.Drawing.Size(74, 17);
             nGAYSINHLabel.TabIndex = 10;
-            nGAYSINHLabel.Text = "NGAYSINH:";
+            nGAYSINHLabel.Text = "Ngày sinh :";
             // 
             // nOISINHLabel
             // 
             nOISINHLabel.AutoSize = true;
-            nOISINHLabel.Location = new System.Drawing.Point(311, 70);
+            nOISINHLabel.Location = new System.Drawing.Point(327, 70);
             nOISINHLabel.Name = "nOISINHLabel";
-            nOISINHLabel.Size = new System.Drawing.Size(73, 17);
+            nOISINHLabel.Size = new System.Drawing.Size(64, 17);
             nOISINHLabel.TabIndex = 12;
-            nOISINHLabel.Text = "NOISINH:";
+            nOISINHLabel.Text = "Nơi sinh :";
             // 
             // dIACHILabel
             // 
             dIACHILabel.AutoSize = true;
-            dIACHILabel.Location = new System.Drawing.Point(311, 102);
+            dIACHILabel.Location = new System.Drawing.Point(327, 102);
             dIACHILabel.Name = "dIACHILabel";
-            dIACHILabel.Size = new System.Drawing.Size(64, 17);
+            dIACHILabel.Size = new System.Drawing.Size(57, 17);
             dIACHILabel.TabIndex = 14;
-            dIACHILabel.Text = "DIACHI:";
+            dIACHILabel.Text = "Địa chỉ :";
             // 
             // gHICHULabel
             // 
             gHICHULabel.AutoSize = true;
-            gHICHULabel.Location = new System.Drawing.Point(311, 165);
+            gHICHULabel.Location = new System.Drawing.Point(327, 165);
             gHICHULabel.Name = "gHICHULabel";
-            gHICHULabel.Size = new System.Drawing.Size(69, 17);
+            gHICHULabel.Size = new System.Drawing.Size(60, 17);
             gHICHULabel.TabIndex = 16;
-            gHICHULabel.Text = "GHICHU:";
+            gHICHULabel.Text = "Ghi chú :";
+            // 
+            // nGHIHOCLabel
+            // 
+            nGHIHOCLabel.AutoSize = true;
+            nGHIHOCLabel.Location = new System.Drawing.Point(327, 137);
+            nGHIHOCLabel.Name = "nGHIHOCLabel";
+            nGHIHOCLabel.Size = new System.Drawing.Size(68, 17);
+            nGHIHOCLabel.TabIndex = 18;
+            nGHIHOCLabel.Text = "Nghỉ học :";
             // 
             // barManager1
             // 
@@ -528,6 +537,21 @@
             this.pHAICheckEdit.Size = new System.Drawing.Size(150, 18);
             this.pHAICheckEdit.TabIndex = 9;
             // 
+            // nGHIHOCCheckEdit
+            // 
+            this.nGHIHOCCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSinhVien, "NGHIHOC", true));
+            this.nGHIHOCCheckEdit.EditValue = false;
+            this.nGHIHOCCheckEdit.Location = new System.Drawing.Point(407, 134);
+            this.nGHIHOCCheckEdit.MenuManager = this.barManager1;
+            this.nGHIHOCCheckEdit.Name = "nGHIHOCCheckEdit";
+            this.nGHIHOCCheckEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.nGHIHOCCheckEdit.Properties.Columns = 2;
+            this.nGHIHOCCheckEdit.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(true, "Đã nghỉ"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(false, "Còn học")});
+            this.nGHIHOCCheckEdit.Size = new System.Drawing.Size(150, 19);
+            this.nGHIHOCCheckEdit.TabIndex = 19;
+            // 
             // gridControlLop
             // 
             this.gridControlLop.DataSource = this.bdsLop;
@@ -691,6 +715,7 @@
             this.tableAdapterManager.KHOATableAdapter = null;
             this.tableAdapterManager.LOPTableAdapter = this.lOPTableAdapter;
             this.tableAdapterManager.MONHOCTableAdapter = null;
+            this.tableAdapterManager.SINHVIEN1TableAdapter = null;
             this.tableAdapterManager.SINHVIENTableAdapter = this.sINHVIENTableAdapter;
             this.tableAdapterManager.UpdateOrder = QLDSV1.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
@@ -701,30 +726,6 @@
             // v_DS_PHANMANHTableAdapter
             // 
             this.v_DS_PHANMANHTableAdapter.ClearBeforeFill = true;
-            // 
-            // nGHIHOCLabel
-            // 
-            nGHIHOCLabel.AutoSize = true;
-            nGHIHOCLabel.Location = new System.Drawing.Point(311, 137);
-            nGHIHOCLabel.Name = "nGHIHOCLabel";
-            nGHIHOCLabel.Size = new System.Drawing.Size(80, 17);
-            nGHIHOCLabel.TabIndex = 18;
-            nGHIHOCLabel.Text = "NGHIHOC:";
-            // 
-            // nGHIHOCCheckEdit
-            // 
-            this.nGHIHOCCheckEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSinhVien, "NGHIHOC", true));
-            this.nGHIHOCCheckEdit.EditValue = false;
-            this.nGHIHOCCheckEdit.Location = new System.Drawing.Point(407, 134);
-            this.nGHIHOCCheckEdit.MenuManager = this.barManager1;
-            this.nGHIHOCCheckEdit.Name = "nGHIHOCCheckEdit";
-            this.nGHIHOCCheckEdit.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.nGHIHOCCheckEdit.Properties.Columns = 2;
-            this.nGHIHOCCheckEdit.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(true, "Đã nghỉ"),
-            new DevExpress.XtraEditors.Controls.RadioGroupItem(false, "Còn học")});
-            this.nGHIHOCCheckEdit.Size = new System.Drawing.Size(150, 19);
-            this.nGHIHOCCheckEdit.TabIndex = 19;
             // 
             // frmSinhVien
             // 
@@ -763,12 +764,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nGAYSINHDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nGAYSINHDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pHAICheckEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nGHIHOCCheckEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlLop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewLop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlSinhVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewSinhVien)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nGHIHOCCheckEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

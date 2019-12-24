@@ -76,5 +76,31 @@ namespace QLDSV1
 
             }
         }
+
+        private void btnInDSSV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmInDanhSachSV));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmInDanhSachSV f = new frmInDanhSachSV();
+                f.MdiParent = this;
+                f.Show();
+
+            }
+        }
+
+        private void btnInPhieuDiem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExists(typeof(frmInPhieuDiem));
+            if (frm != null) frm.Activate();
+            else
+            {
+                frmInPhieuDiem f = new frmInPhieuDiem();
+                f.MdiParent = this;
+                f.Show();
+
+            }
+        }
     }
 }
