@@ -45,7 +45,7 @@ namespace QLDSV1
         {
             masv = txtMaSV.Text.Trim();
             if (Program.myReader != null) Program.myReader.Close();
-            String strLenh = "Select TOP 1 MASV,HO,TEN,MALOP from SINHVIEN where MASV = '" + masv + "'";
+            String strLenh = "Select MASV,HO,TEN,MALOP from SINHVIEN where MASV = '" + masv + "'";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader.Read())
             {
@@ -230,10 +230,10 @@ namespace QLDSV1
                 if (Program.myReader != null) Program.myReader.Close();
                 String strLenh = "Select * from HOCPHI where MASV = N'" + masv + "' "+ "and (NIENKHOA!=N'"+nienkhoa_edit+"' or HOCKY!="+hocky_edit+")";
                 Program.myReader = Program.ExecSqlDataReader(strLenh);
-                int count=0;
+                //int count=0;
                 while (Program.myReader.Read())
                 {
-                    count++;
+                   // count++;
                     if (String.Equals(Program.myReader.GetString(1).Trim(), nien_khoa) && Program.myReader.GetInt32(2) == hoc_ky)
                     {
                         MessageBox.Show("Thông tin học phí bị trùng. Vui lòng nhập lại!", "Thông báo", MessageBoxButtons.OK);

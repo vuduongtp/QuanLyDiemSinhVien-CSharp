@@ -250,7 +250,7 @@ namespace QLDSV1
             chucnang = 3;
             bool check_xoa = true;
             if (Program.myReader != null) Program.myReader.Close();
-            String strLenh = "Select TOP 1 MASV from LINK0.QLDSV.dbo.DIEM where MASV = '" + mASVTextEdit.Text.Trim() + "'";
+            String strLenh = "exec SP_TIMDIEMTUMASINHVIEN @masv= '" + mASVTextEdit.Text.Trim() + "'";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader.Read())
             {
@@ -258,7 +258,7 @@ namespace QLDSV1
                 return;
             }
             if (Program.myReader != null) Program.myReader.Close();
-            strLenh = "Select TOP 1 MASV from LINK0.QLDSV.dbo.HOCPHI where MASV = '" + mASVTextEdit.Text.Trim() + "'";
+            strLenh = "exec SP_TIMHOCPHITUMASINHVIEN @masv= '" + mASVTextEdit.Text.Trim() + "'";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader.Read())
             {
@@ -324,7 +324,7 @@ namespace QLDSV1
             }
 
             if (Program.myReader != null) Program.myReader.Close();
-            String strLenh = "Select TOP 1 MASV from LINK0.QLDSV.dbo.SINHVIEN where MASV = '" + mASVTextEdit.Text.Trim() + "'";
+            String strLenh = "exec SP_TIMSV @X= '" + mASVTextEdit.Text.Trim() + "'";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (chucnang == 1)//them
             {

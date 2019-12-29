@@ -178,7 +178,7 @@ namespace QLDSV1
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (Program.myReader != null) Program.myReader.Close();
-            String strLenh = "Select TOP 1 MAMH from LINK0.QLDSV.dbo.DIEM where MAMH = '" + mAMHTextEdit.Text.Trim() + "'";
+            String strLenh = "exec SP_TIMDIEMTUMAMONHOC @mamh= '" + mAMHTextEdit.Text.Trim() + "'";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             check = Program.myReader.Read();
             chucnang = 2;
@@ -208,7 +208,7 @@ namespace QLDSV1
             }
 
             if (Program.myReader != null) Program.myReader.Close();
-            String strLenh = "Select TOP 1 MAMH from LINK0.QLDSV.dbo.MONHOC where MAMH = '"+ mAMHTextEdit.Text.Trim() +"'";
+            String strLenh = "Select TOP 1 MAMH from MONHOC where MAMH = '"+ mAMHTextEdit.Text.Trim() +"'";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (chucnang == 1)//them
             {                       
@@ -374,7 +374,7 @@ namespace QLDSV1
             chucnang = 3;
             bool check_xoa = true;
             if (Program.myReader!=null) Program.myReader.Close();
-            String strLenh = "Select TOP 1 MAMH from LINK0.QLDSV.dbo.DIEM where MAMH = '" + mAMHTextEdit.Text.Trim() + "'";
+            String strLenh = "exec SP_TIMDIEMTUMAMONHOC @mamh= '" + mAMHTextEdit.Text.Trim() + "'";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader.Read())
             {

@@ -27,6 +27,7 @@ namespace QLDSV1
             this.lOPTableAdapter.Fill(this.dS.LOP);
             // TODO: This line of code loads data into the 'dS.V_DS_PHANMANH' table. You can move, or remove it, as needed.
             this.v_DS_PHANMANHTableAdapter.Fill(this.dS.V_DS_PHANMANH);
+            comboBox1.SelectedIndex = -1;
             comboBox1.SelectedIndex = Program.mChinhanh;
             btnIn.Enabled = false;
             if (Program.mGroup == "PGV")

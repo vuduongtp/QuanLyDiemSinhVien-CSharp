@@ -119,7 +119,7 @@ namespace QLDSV1
                 return;
             }
             if (Program.myReader != null) Program.myReader.Close();
-            String strLenh = "select NGHIHOC FROM LINK0.QLDSV.dbo.SINHVIEN WHERE MASV='" + masv + "' and NGHIHOC=1";
+            String strLenh = "exec SP_TIMSVDANGHIHOC @X='" + masv +"'";
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader.Read())
             {
@@ -128,7 +128,7 @@ namespace QLDSV1
             }
 
             if (Program.myReader != null) Program.myReader.Close();
-            String strLenh1 = "select MASV,HO,TEN,NGAYSINH,TENLOP,TENKH from(select MASV, MALOP, HO, TEN, NGAYSINH from LINK0.QLDSV.dbo.SINHVIEN where SINHVIEN.MASV = '"+masv+"') as SV,LINK0.QLDSV.dbo.LOP,LINK0.QLDSV.dbo.KHOA where LOP.MALOP = SV.MALOP and KHOA.MAKH = LOP.MAKH";
+            String strLenh1 = "exec SP_TIMSV @x='" + masv+"'";
             Program.myReader = Program.ExecSqlDataReader(strLenh1);
             if (Program.myReader.Read())
             {
@@ -137,6 +137,8 @@ namespace QLDSV1
                 labelMasv.Text = "Mã sinh viên : " + Program.myReader.GetString(0);
                 labelNgaySinh.Text = "Ngày sinh : " + Program.myReader.GetDateTime(3).ToString().Split(' ')[0];
                 labelKhoa.Text = "Khoa : " + Program.myReader.GetString(5);
+                malop_bandau = Program.myReader.GetString(7);
+                makhoa_bandau = Program.myReader.GetString(6);
                 //tenkhoa_bandau = Program.myReader.GetString(5);
                 //tenlop_bandau = Program.myReader.GetString(4);
 
@@ -144,23 +146,23 @@ namespace QLDSV1
                 cmbLop.SelectedIndex = 0;
                 cmbLop.SelectedIndex = -1;
 
-                if (Program.myReader != null) Program.myReader.Close();
-                strLenh = "select TOP 1 MALOP FROM LINK0.QLDSV.dbo.SINHVIEN WHERE MASV=N'" + masv + "'";
-                Program.myReader = Program.ExecSqlDataReader(strLenh);
-                if (Program.myReader.Read())
-                {
-                    malop_bandau = Program.myReader.GetString(0);
-                    //MessageBox.Show("Lop." + malop_bandau, "Thông báo", MessageBoxButtons.OK);
-                }
+                //if (Program.myReader != null) Program.myReader.Close();
+                //strLenh = "select TOP 1 MALOP FROM LINK0.QLDSV.dbo.SINHVIEN WHERE MASV=N'" + masv + "'";
+                //Program.myReader = Program.ExecSqlDataReader(strLenh);
+                //if (Program.myReader.Read())
+                //{
+                //    malop_bandau = Program.myReader.GetString(0);
+                //    //MessageBox.Show("Lop." + malop_bandau, "Thông báo", MessageBoxButtons.OK);
+                //}
 
-                if (Program.myReader != null) Program.myReader.Close();
-                strLenh = "select MAKH from LINK0.QLDSV.dbo.LOP,(SELECT MALOP FROM LINK0.QLDSV.dbo.SINHVIEN where SINHVIEN.MASV='" + masv+"') as SV where LOP.MALOP=SV.MALOP";
-                Program.myReader = Program.ExecSqlDataReader(strLenh);
-                if (Program.myReader.Read())
-                {
-                    makhoa_bandau = Program.myReader.GetString(0);
-                    //MessageBox.Show("Lop." + makhoa_bandau, "Thông báo", MessageBoxButtons.OK);
-                }
+                //if (Program.myReader != null) Program.myReader.Close();
+                //strLenh = "select MAKH from LINK0.QLDSV.dbo.LOP,(SELECT MALOP FROM LINK0.QLDSV.dbo.SINHVIEN where SINHVIEN.MASV='" + masv+"') as SV where LOP.MALOP=SV.MALOP";
+                //Program.myReader = Program.ExecSqlDataReader(strLenh);
+                //if (Program.myReader.Read())
+                //{
+                //    makhoa_bandau = Program.myReader.GetString(0);
+                //    //MessageBox.Show("Lop." + makhoa_bandau, "Thông báo", MessageBoxButtons.OK);
+                //}
                 
             }
             else
@@ -225,7 +227,7 @@ namespace QLDSV1
 
             if (loai_chuyen==1)//chuyen cung khoa
             {
-                string lenh = "UPDATE LINK0.QLDSV.dbo.SINHVIEN SET MALOP = N'" + malop_chuyen+"',GHICHU='Chuyển từ lớp "+malop_bandau+" sang lớp "+malop_chuyen+"' WHERE MASV=N'"+masv+"'";
+                string lenh = "exec ChuyenLop @x="+masv+" , "+"@ML=N'"+malop_chuyen+"'";
                 SqlCommand sqlcom = new SqlCommand(lenh, Program.conn);
                 try
                 {
@@ -242,7 +244,26 @@ namespace QLDSV1
             if (loai_chuyen == 2)//chuyen khac khoa
             {
                 if (Program.myReader != null) Program.myReader.Close();
-                String strLenh1 = "select MASV FROM LINK0.QLDSV.dbo.SINHVIEN WHERE MASV='" + masv_moi + "'";
+                String strLenh2 = "exec sp_timdiemtumasinhvien @MASV='" + masv + "'";
+                Program.myReader = Program.ExecSqlDataReader(strLenh2);
+                if (Program.myReader.Read())
+                {
+                    MessageBox.Show("Sinh viên này đã có điểm, không thể chuyển lớp khác khoa. Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (Program.myReader != null) Program.myReader.Close();
+                String strLenh3 = "exec sp_timhocphitumasinhvien @MASV='" + masv + "'";
+                Program.myReader = Program.ExecSqlDataReader(strLenh3);
+                if (Program.myReader.Read())
+                {
+                    MessageBox.Show("Sinh viên này đã đóng học phí, không thể chuyển lớp khác khoa. Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+                
+
+                if (Program.myReader != null) Program.myReader.Close();
+                String strLenh1 = "exec sp_timsv @X='" + masv_moi + "'";
                 Program.myReader = Program.ExecSqlDataReader(strLenh1);
                 if (Program.myReader.Read())
                 {
@@ -274,69 +295,69 @@ namespace QLDSV1
                 }
                 Program.myReader.Close();
 
-                strLenh = "select MAMH, LAN, DIEM FROM LINK0.QLDSV.dbo.DIEM WHERE MASV='" + masv + "'";
-                Program.myReader = Program.ExecSqlDataReader(strLenh);
+                //strLenh = "select MAMH, LAN, DIEM FROM LINK0.QLDSV.dbo.DIEM WHERE MASV='" + masv + "'";
+                //Program.myReader = Program.ExecSqlDataReader(strLenh);
 
-                while(Program.myReader.Read())
-                {
-                    DiemMonHoc diem1 = new DiemMonHoc();
-                    diem1.MaMH = Program.myReader.GetString(0);
-                    diem1.Lan = Int32.Parse(Program.myReader.GetValue(1).ToString());
-                    diem1.Diem = float.Parse(Program.myReader.GetValue(2).ToString());
-                    diemmh.Add(diem1);
-                }
-                Program.myReader.Close();
+                //while(Program.myReader.Read())
+                //{
+                //    DiemMonHoc diem1 = new DiemMonHoc();
+                //    diem1.MaMH = Program.myReader.GetString(0);
+                //    diem1.Lan = Int32.Parse(Program.myReader.GetValue(1).ToString());
+                //    diem1.Diem = float.Parse(Program.myReader.GetValue(2).ToString());
+                //    diemmh.Add(diem1);
+                //}
+                //Program.myReader.Close();
               
-                strLenh = "select NIENKHOA, HOCKY, HOCPHI, SOTIENDADONG FROM LINK0.QLDSV.dbo.HOCPHI WHERE MASV='" + masv + "'";
-                Program.myReader = Program.ExecSqlDataReader(strLenh);
+                //strLenh = "select NIENKHOA, HOCKY, HOCPHI, SOTIENDADONG FROM LINK0.QLDSV.dbo.HOCPHI WHERE MASV='" + masv + "'";
+                //Program.myReader = Program.ExecSqlDataReader(strLenh);
 
-                while (Program.myReader.Read())
-                {
-                    HocphiSV hp = new HocphiSV();
-                    hp.Nienkhoa = Program.myReader.GetString(0);
-                    hp.Hocky = Program.myReader.GetInt32(1);
-                    hp.Hocphi = Program.myReader.GetInt32(2);
-                    hp.Sotiendadong = Program.myReader.GetInt32(3);
-                    hocphisv.Add(hp);
+                //while (Program.myReader.Read())
+                //{
+                //    HocphiSV hp = new HocphiSV();
+                //    hp.Nienkhoa = Program.myReader.GetString(0);
+                //    hp.Hocky = Program.myReader.GetInt32(1);
+                //    hp.Hocphi = Program.myReader.GetInt32(2);
+                //    hp.Sotiendadong = Program.myReader.GetInt32(3);
+                //    hocphisv.Add(hp);
 
-                }
-                Program.myReader.Close();
+                //}
+                //Program.myReader.Close();
 
-                for (int i=0; i<diemmh.Count; i++)
-                {
-                    string lenh = "INSERT INTO LINK0.QLDSV.dbo.DIEM(MASV, MAMH, LAN, DIEM) VALUES(N'" + masv_moi + "',N'" + diemmh[i].MaMH + "'," + diemmh[i].Lan + ","+ diemmh[i].Diem + ")";
-                   // MessageBox.Show(lenh);
-                    SqlCommand sqlcom = new SqlCommand(lenh, Program.conn);
-                    try
-                    {
-                        sqlcom.ExecuteNonQuery();
-                        //MessageBox.Show(strLenh);
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        return;
-                    }
-                }
+                //for (int i=0; i<diemmh.Count; i++)
+                //{
+                //    string lenh = "INSERT INTO LINK0.QLDSV.dbo.DIEM(MASV, MAMH, LAN, DIEM) VALUES(N'" + masv_moi + "',N'" + diemmh[i].MaMH + "'," + diemmh[i].Lan + ","+ diemmh[i].Diem + ")";
+                //   // MessageBox.Show(lenh);
+                //    SqlCommand sqlcom = new SqlCommand(lenh, Program.conn);
+                //    try
+                //    {
+                //        sqlcom.ExecuteNonQuery();
+                //        //MessageBox.Show(strLenh);
+                //    }
+                //    catch (SqlException ex)
+                //    {
+                //        MessageBox.Show(ex.Message);
+                //        return;
+                //    }
+                //}
 
-                for (int i = 0; i < hocphisv.Count; i++)
-                {
-                    string lenh = "INSERT INTO LINK0.QLDSV.dbo.HOCPHI(MASV, NIENKHOA, HOCKY, HOCPHI, SOTIENDADONG) VALUES(N'" + masv_moi + "',N'" + hocphisv[i].Nienkhoa + "'," + hocphisv[i].Hocky + "," + hocphisv[i].Hocphi + "," + hocphisv[i].Sotiendadong + ")";
-                    //MessageBox.Show(lenh);
-                    SqlCommand sqlcom = new SqlCommand(lenh, Program.conn);
-                    try
-                    {
-                        sqlcom.ExecuteNonQuery();
-                        //MessageBox.Show(strLenh);
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                        return;
-                    }
-                }
+                //for (int i = 0; i < hocphisv.Count; i++)
+                //{
+                //    string lenh = "INSERT INTO LINK0.QLDSV.dbo.HOCPHI(MASV, NIENKHOA, HOCKY, HOCPHI, SOTIENDADONG) VALUES(N'" + masv_moi + "',N'" + hocphisv[i].Nienkhoa + "'," + hocphisv[i].Hocky + "," + hocphisv[i].Hocphi + "," + hocphisv[i].Sotiendadong + ")";
+                //    //MessageBox.Show(lenh);
+                //    SqlCommand sqlcom = new SqlCommand(lenh, Program.conn);
+                //    try
+                //    {
+                //        sqlcom.ExecuteNonQuery();
+                //        //MessageBox.Show(strLenh);
+                //    }
+                //    catch (SqlException ex)
+                //    {
+                //        MessageBox.Show(ex.Message);
+                //        return;
+                //    }
+                //}
 
-                string lenh1 = "UPDATE LINK0.QLDSV.dbo.SINHVIEN SET NGHIHOC=1,GHICHU=N'Chuyển sang lớp "+malop_chuyen+" với mã "+ masv_moi + "' WHERE MASV='"+masv+"'";
+                string lenh1 = "exec SETNGHIHOC @x='"+masv+"',@GHICHU=N'Chuyển sang lớp " + malop_chuyen+" với mã "+ masv_moi + "'";
                 //MessageBox.Show(lenh1);
                 SqlCommand sqlcom1 = new SqlCommand(lenh1, Program.conn);
                 try
