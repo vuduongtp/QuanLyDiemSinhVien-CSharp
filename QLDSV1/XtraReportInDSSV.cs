@@ -13,6 +13,7 @@ namespace QLDSV1
             InitializeComponent();
 
             ds1.EnforceConstraints = false;
+            this.sP_INDANHSACHSINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.sP_INDANHSACHSINHVIENTableAdapter.Fill(ds1.SP_INDANHSACHSINHVIEN, malop);
 
         }

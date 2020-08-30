@@ -14,7 +14,9 @@ namespace QLDSV1
         {
             conStr= "Data Source=" + Program.servername + "; Initial Catalog=QLDSV; User ID=" +
                       Program.mlogin + ";password=" + Program.password;
-           
+            Program.connstr = conStr;
+
+
         }
         public SqlConnection getConnect()
         {

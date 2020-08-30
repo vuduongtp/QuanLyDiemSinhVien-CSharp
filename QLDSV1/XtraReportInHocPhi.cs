@@ -11,7 +11,8 @@ namespace QLDSV1
         public XtraReportInHocPhi(string malop,string nienkhoa,int hocky)
         {
             InitializeComponent();
-            this.sP_INHOCPHILOPTableAdapter.Fill(ds1.SP_INHOCPHILOP, malop,nienkhoa,hocky);
+            this.sP_INHOCPHILOPTableAdapter1.Connection.ConnectionString = Program.connstr;
+            this.sP_INHOCPHILOPTableAdapter1.Fill(ds1.SP_INHOCPHILOP, malop,nienkhoa,hocky);
         }
 
     }

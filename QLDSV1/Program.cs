@@ -4,17 +4,13 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.UserSkins;
 using DevExpress.Skins;
-using System.Data;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace QLDSV1
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        
         public static SqlConnection conn = new SqlConnection();
         public static String connstr;
         public static SqlDataReader myReader;
@@ -28,13 +24,17 @@ namespace QLDSV1
         public static String remotepassword = "123456";
         public static String mloginDN = "";
         public static String passwordDN = "";
+        public static String tenServerDN = "";
         public static String mGroup = "";
         public static String mHoten = "";
-        public static int mChinhanh = 0;
-        public static String tenServerDN = "";
-
+        public static int mChinhanh =0;
+        public static int temp = 0;
+        public static int demrow = 0;
+        public static String maLopSub = "";
+        public static String maMHComboBox = "";
+        public static String rptMalop = "";
+        public static String rptMaMh = "";
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập
-
         //public static frmMain frmChinh;
 
         public static int KetNoi()
@@ -57,13 +57,11 @@ namespace QLDSV1
                 return 0;
             }
         }
-
         public static SqlDataReader ExecSqlDataReader(String strLenh)
         {
             SqlDataReader myreader;
             SqlCommand sqlcmd = new SqlCommand(strLenh, Program.conn);
             sqlcmd.CommandType = CommandType.Text;
-            sqlcmd.CommandTimeout = 600;
             if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
             try
             {
@@ -77,7 +75,6 @@ namespace QLDSV1
                 return null;
             }
         }
-
         public static DataTable ExecSqlDataTable(String cmd)
         {
             DataTable dt = new DataTable();
@@ -87,7 +84,6 @@ namespace QLDSV1
             conn.Close();
             return dt;
         }
-
         [STAThread]
         static void Main()
         {
@@ -96,8 +92,9 @@ namespace QLDSV1
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
-            Application.Run(new frmDangNhap());
-
+            Application.Run(new formdangnhap());
+            
         }
+
     }
 }

@@ -57,7 +57,7 @@ namespace QLDSV1
                 MessageBox.Show("Niên khoá không được để trống.", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
-                nienkhoa = txtNienKhoa.Text.Trim();
+            nienkhoa = txtNienKhoa.Text.Trim();
             XtraReportInHocPhi rpt = new XtraReportInHocPhi(malop,nienkhoa,hocky);
             rpt.xrLabelLop.Text = "Lớp : " + tenlop;
             rpt.xrLabelNienKhoa.Text = "Niên khoá : " + nienkhoa;

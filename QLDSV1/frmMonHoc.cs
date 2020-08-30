@@ -99,7 +99,10 @@ namespace QLDSV1
             {
                 try
                 {
-                    Program.servername = cmbChiNhanh.SelectedValue.ToString();
+                    if (cmbChiNhanh.SelectedValue != null)
+                    {
+                        Program.servername = cmbChiNhanh.SelectedValue.ToString();
+                    }
                     if (Program.servername.Equals(Program.tenServerDN))
                     {
                         Program.mlogin = Program.mloginDN;

@@ -1,6 +1,6 @@
 ﻿namespace QLDSV1
 {
-    partial class frmDangNhap
+    partial class formdangnhap
     {
         /// <summary>
         /// Required designer variable.
@@ -28,140 +28,192 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Label tENKHOALabel;
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnThoat = new System.Windows.Forms.Button();
-            this.btnDangnhap = new System.Windows.Forms.Button();
-            this.txtPass = new System.Windows.Forms.TextBox();
-            this.txtLogin = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.tENKHOAComboBox = new System.Windows.Forms.ComboBox();
-            tENKHOALabel = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.cmbCN = new System.Windows.Forms.ComboBox();
+            this.vDSPHANMANHBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.qLDSVDataSet = new QLDSV1.QLDSVDataSet();
+            this.v_DS_PHANMANHTableAdapter = new QLDSV1.QLDSVDataSetTableAdapters.V_DS_PHANMANHTableAdapter();
+            this.vDSPHANMANHBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btndangnhap = new System.Windows.Forms.Button();
+            this.thoat = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.vDSPHANMANHBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLDSVDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vDSPHANMANHBindingSource1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tENKHOALabel
-            // 
-            tENKHOALabel.AutoSize = true;
-            tENKHOALabel.Location = new System.Drawing.Point(134, 48);
-            tENKHOALabel.Name = "tENKHOALabel";
-            tENKHOALabel.Size = new System.Drawing.Size(80, 19);
-            tENKHOALabel.TabIndex = 0;
-            tENKHOALabel.Text = "Chọn Khoa";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.groupBox1.Controls.Add(this.btnThoat);
-            this.groupBox1.Controls.Add(this.btnDangnhap);
-            this.groupBox1.Controls.Add(this.txtPass);
-            this.groupBox1.Controls.Add(this.txtLogin);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(tENKHOALabel);
-            this.groupBox1.Controls.Add(this.tENKHOAComboBox);
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Location = new System.Drawing.Point(193, 154);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(699, 322);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Location = new System.Drawing.Point(390, 262);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(108, 34);
-            this.btnThoat.TabIndex = 7;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
-            // 
-            // btnDangnhap
-            // 
-            this.btnDangnhap.Location = new System.Drawing.Point(220, 262);
-            this.btnDangnhap.Name = "btnDangnhap";
-            this.btnDangnhap.Size = new System.Drawing.Size(108, 34);
-            this.btnDangnhap.TabIndex = 6;
-            this.btnDangnhap.Text = "Đăng nhập";
-            this.btnDangnhap.UseVisualStyleBackColor = true;
-            this.btnDangnhap.Click += new System.EventHandler(this.btnDangnhap_Click);
-            // 
-            // txtPass
-            // 
-            this.txtPass.Location = new System.Drawing.Point(220, 204);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.PasswordChar = '*';
-            this.txtPass.Size = new System.Drawing.Size(322, 26);
-            this.txtPass.TabIndex = 5;
-            this.txtPass.Text = "123456";
-            // 
-            // txtLogin
-            // 
-            this.txtLogin.Location = new System.Drawing.Point(220, 125);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(322, 26);
-            this.txtLogin.TabIndex = 4;
-            this.txtLogin.Text = "nahao";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(134, 207);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 19);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Mật khẩu";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(134, 128);
+            this.label1.Location = new System.Drawing.Point(102, 74);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 19);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Tài khoản";
+            this.label1.Size = new System.Drawing.Size(74, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Phân mảnh";
             // 
-            // tENKHOAComboBox
+            // cmbCN
             // 
-            this.tENKHOAComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tENKHOAComboBox.FormattingEnabled = true;
-            this.tENKHOAComboBox.Location = new System.Drawing.Point(220, 45);
-            this.tENKHOAComboBox.Name = "tENKHOAComboBox";
-            this.tENKHOAComboBox.Size = new System.Drawing.Size(322, 27);
-            this.tENKHOAComboBox.TabIndex = 1;
-            this.tENKHOAComboBox.SelectedIndexChanged += new System.EventHandler(this.tENKHOAComboBox_SelectedIndexChanged);
+            this.cmbCN.DataSource = this.vDSPHANMANHBindingSource;
+            this.cmbCN.DisplayMember = "TENKHOA";
+            this.cmbCN.FormattingEnabled = true;
+            this.cmbCN.Location = new System.Drawing.Point(259, 64);
+            this.cmbCN.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbCN.Name = "cmbCN";
+            this.cmbCN.Size = new System.Drawing.Size(321, 25);
+            this.cmbCN.TabIndex = 1;
+            this.cmbCN.ValueMember = "TENSERVER";
+            this.cmbCN.SelectedIndexChanged += new System.EventHandler(this.CmbCN_SelectedIndexChanged);
             // 
-            // frmDangNhap
+            // vDSPHANMANHBindingSource
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.vDSPHANMANHBindingSource.DataMember = "V_DS_PHANMANH";
+            this.vDSPHANMANHBindingSource.DataSource = this.qLDSVDataSet;
+            // 
+            // qLDSVDataSet
+            // 
+            this.qLDSVDataSet.DataSetName = "QLDSVDataSet";
+            this.qLDSVDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // v_DS_PHANMANHTableAdapter
+            // 
+            this.v_DS_PHANMANHTableAdapter.ClearBeforeFill = true;
+            // 
+            // vDSPHANMANHBindingSource1
+            // 
+            this.vDSPHANMANHBindingSource1.DataMember = "V_DS_PHANMANH";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(102, 127);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Tên đăng nhập";
+            // 
+            // txtLogin
+            // 
+            this.txtLogin.Location = new System.Drawing.Point(259, 127);
+            this.txtLogin.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(321, 25);
+            this.txtLogin.TabIndex = 3;
+            this.txtLogin.Text = "nahao";
+            // 
+            // txtPass
+            // 
+            this.txtPass.Location = new System.Drawing.Point(259, 175);
+            this.txtPass.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
+            this.txtPass.Size = new System.Drawing.Size(321, 25);
+            this.txtPass.TabIndex = 4;
+            this.txtPass.Text = "123456";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(102, 179);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 17);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Mật khẩu";
+            // 
+            // btndangnhap
+            // 
+            this.btndangnhap.Location = new System.Drawing.Point(164, 262);
+            this.btndangnhap.Margin = new System.Windows.Forms.Padding(4);
+            this.btndangnhap.Name = "btndangnhap";
+            this.btndangnhap.Size = new System.Drawing.Size(100, 30);
+            this.btndangnhap.TabIndex = 6;
+            this.btndangnhap.Text = "Đăng nhập";
+            this.btndangnhap.UseVisualStyleBackColor = true;
+            this.btndangnhap.Click += new System.EventHandler(this.Btndangnhap_Click);
+            // 
+            // thoat
+            // 
+            this.thoat.Location = new System.Drawing.Point(395, 262);
+            this.thoat.Margin = new System.Windows.Forms.Padding(4);
+            this.thoat.Name = "thoat";
+            this.thoat.Size = new System.Drawing.Size(100, 30);
+            this.thoat.TabIndex = 7;
+            this.thoat.Text = "Thoát";
+            this.thoat.UseVisualStyleBackColor = true;
+            this.thoat.Click += new System.EventHandler(this.thoat_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // panel1
+            // 
+            this.panel1.AutoSize = true;
+            this.panel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel1.Controls.Add(this.cmbCN);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.thoat);
+            this.panel1.Controls.Add(this.btndangnhap);
+            this.panel1.Controls.Add(this.txtLogin);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.txtPass);
+            this.panel1.Location = new System.Drawing.Point(166, 111);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(696, 329);
+            this.panel1.TabIndex = 8;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel1_Paint);
+            // 
+            // formdangnhap
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1021, 478);
-            this.Controls.Add(this.groupBox1);
-            this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClientSize = new System.Drawing.Size(1061, 482);
+            this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmDangNhap";
-            this.Text = "Đăng nhập";
+            this.Name = "formdangnhap";
+            this.Text = "DangNhap";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.frmDangNhap_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Load += new System.EventHandler(this.DangNhap_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.vDSPHANMANHBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLDSVDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vDSPHANMANHBindingSource1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        
-        private System.Windows.Forms.ComboBox tENKHOAComboBox;
-        private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.Button btnDangnhap;
-        private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.TextBox txtLogin;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbCN;
+        private QLDSVDataSet qLDSVDataSet;
+        private System.Windows.Forms.BindingSource vDSPHANMANHBindingSource;
+        private QLDSVDataSetTableAdapters.V_DS_PHANMANHTableAdapter v_DS_PHANMANHTableAdapter;
+        //private QLDSVDataSet1 qLDSVDataSet1;
+        private System.Windows.Forms.BindingSource vDSPHANMANHBindingSource1;
+        //private QLDSVDataSet1TableAdapters.V_DS_PHANMANHTableAdapter v_DS_PHANMANHTableAdapter1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.TextBox txtPass;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btndangnhap;
+        private System.Windows.Forms.Button thoat;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

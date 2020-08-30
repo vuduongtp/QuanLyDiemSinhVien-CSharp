@@ -715,7 +715,7 @@
             this.tableAdapterManager.KHOATableAdapter = null;
             this.tableAdapterManager.LOPTableAdapter = this.lOPTableAdapter;
             this.tableAdapterManager.MONHOCTableAdapter = null;
-            this.tableAdapterManager.SINHVIEN1TableAdapter = null;
+            //this.tableAdapterManager.SINHVIEN1TableAdapter = null;
             this.tableAdapterManager.SINHVIENTableAdapter = this.sINHVIENTableAdapter;
             this.tableAdapterManager.UpdateOrder = QLDSV1.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 

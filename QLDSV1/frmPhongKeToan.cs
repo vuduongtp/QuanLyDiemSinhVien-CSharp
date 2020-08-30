@@ -28,7 +28,7 @@ namespace QLDSV1
 
         private void frmHocPhi_Load(object sender, EventArgs e)
         {
-            DevExpress.LookAndFeel.UserLookAndFeel.Default.SetSkinStyle("Springtime");
+            DevExpress.LookAndFeel.UserLookAndFeel.Default.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Office2003;
             MAGV.Text = "Mã giảng viên: " + Program.username;
             HOTEN.Text = "Họ tên: " + Program.mHoten;
             NHOM.Text = "Nhóm: " + Program.mGroup;
@@ -60,7 +60,7 @@ namespace QLDSV1
             }
         }
 
-        private void btnTaoLogin_ItemClick(object sender, ItemClickEventArgs e)
+        private void BarButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
             Form frm = this.CheckExists(typeof(frmTaoLogin));
             if (frm != null) frm.Activate();

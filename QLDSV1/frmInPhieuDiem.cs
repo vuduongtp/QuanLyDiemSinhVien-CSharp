@@ -53,7 +53,10 @@ namespace QLDSV1
             {
                 try
                 {
-                    Program.servername = comboBox1.SelectedValue.ToString();
+                    if (comboBox1.SelectedValue != null)
+                    {
+                        Program.servername = comboBox1.SelectedValue.ToString();
+                    }
                     if (Program.servername.Equals(Program.tenServerDN))
                     {
                         Program.mlogin = Program.mloginDN;

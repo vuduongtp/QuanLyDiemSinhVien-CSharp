@@ -37,22 +37,26 @@
             this.labelMasv = new System.Windows.Forms.Label();
             this.labelHoTen = new System.Windows.Forms.Label();
             this.btnTimKiem = new System.Windows.Forms.Button();
+            this.txtMaSVMoi = new System.Windows.Forms.TextBox();
             this.txtMaSV = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbLop = new System.Windows.Forms.ComboBox();
-            this.lOPBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lOPBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dS = new QLDSV1.DS();
             this.cmbKhoa = new System.Windows.Forms.ComboBox();
+            this.vDSPHANMANHBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.lOPBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.vDSPHANMANHBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lOPTableAdapter = new QLDSV1.DSTableAdapters.LOPTableAdapter();
             this.v_DS_PHANMANHTableAdapter = new QLDSV1.DSTableAdapters.V_DS_PHANMANHTableAdapter();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtMaSVMoi = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vDSPHANMANHBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vDSPHANMANHBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,6 +157,14 @@
             this.btnTimKiem.UseVisualStyleBackColor = false;
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
+            // txtMaSVMoi
+            // 
+            this.txtMaSVMoi.Location = new System.Drawing.Point(297, 296);
+            this.txtMaSVMoi.Name = "txtMaSVMoi";
+            this.txtMaSVMoi.Size = new System.Drawing.Size(185, 25);
+            this.txtMaSVMoi.TabIndex = 2;
+            this.txtMaSVMoi.Text = "n16cn34";
+            // 
             // txtMaSV
             // 
             this.txtMaSV.Location = new System.Drawing.Point(216, 19);
@@ -169,6 +181,15 @@
             this.label3.Size = new System.Drawing.Size(140, 17);
             this.label3.TabIndex = 1;
             this.label3.Text = "Chọn lớp chuyển đến :";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(120, 299);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(150, 17);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Nhập mã sinh viên mới :";
             // 
             // label2
             // 
@@ -190,7 +211,7 @@
             // 
             // cmbLop
             // 
-            this.cmbLop.DataSource = this.lOPBindingSource;
+            this.cmbLop.DataSource = this.lOPBindingSource1;
             this.cmbLop.DisplayMember = "TENLOP";
             this.cmbLop.FormattingEnabled = true;
             this.cmbLop.Location = new System.Drawing.Point(297, 253);
@@ -200,10 +221,10 @@
             this.cmbLop.ValueMember = "MALOP";
             this.cmbLop.SelectedIndexChanged += new System.EventHandler(this.cmbLop_SelectedIndexChanged);
             // 
-            // lOPBindingSource
+            // lOPBindingSource1
             // 
-            this.lOPBindingSource.DataMember = "LOP";
-            this.lOPBindingSource.DataSource = this.dS;
+            this.lOPBindingSource1.DataMember = "LOP";
+            this.lOPBindingSource1.DataSource = this.dS;
             // 
             // dS
             // 
@@ -213,7 +234,7 @@
             // 
             // cmbKhoa
             // 
-            this.cmbKhoa.DataSource = this.vDSPHANMANHBindingSource;
+            this.cmbKhoa.DataSource = this.vDSPHANMANHBindingSource1;
             this.cmbKhoa.DisplayMember = "TENKHOA";
             this.cmbKhoa.FormattingEnabled = true;
             this.cmbKhoa.Location = new System.Drawing.Point(297, 205);
@@ -222,6 +243,16 @@
             this.cmbKhoa.TabIndex = 0;
             this.cmbKhoa.ValueMember = "TENSERVER";
             this.cmbKhoa.SelectedIndexChanged += new System.EventHandler(this.cmbKhoa_SelectedIndexChanged);
+            // 
+            // vDSPHANMANHBindingSource1
+            // 
+            this.vDSPHANMANHBindingSource1.DataMember = "V_DS_PHANMANH";
+            this.vDSPHANMANHBindingSource1.DataSource = this.dS;
+            // 
+            // lOPBindingSource
+            // 
+            this.lOPBindingSource.DataMember = "LOP";
+            this.lOPBindingSource.DataSource = this.dS;
             // 
             // vDSPHANMANHBindingSource
             // 
@@ -235,23 +266,6 @@
             // v_DS_PHANMANHTableAdapter
             // 
             this.v_DS_PHANMANHTableAdapter.ClearBeforeFill = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(120, 299);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 17);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Nhập mã sinh viên mới :";
-            // 
-            // txtMaSVMoi
-            // 
-            this.txtMaSVMoi.Location = new System.Drawing.Point(297, 296);
-            this.txtMaSVMoi.Name = "txtMaSVMoi";
-            this.txtMaSVMoi.Size = new System.Drawing.Size(185, 25);
-            this.txtMaSVMoi.TabIndex = 2;
-            this.txtMaSVMoi.Text = "n16cn34";
             // 
             // frmChuyenLop
             // 
@@ -268,8 +282,10 @@
             this.Load += new System.EventHandler(this.frmChuyenLop_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vDSPHANMANHBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lOPBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vDSPHANMANHBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -298,5 +314,7 @@
         private System.Windows.Forms.Button btnChuyenLop;
         private System.Windows.Forms.TextBox txtMaSVMoi;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.BindingSource lOPBindingSource1;
+        private System.Windows.Forms.BindingSource vDSPHANMANHBindingSource1;
     }
 }
