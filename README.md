@@ -1,4 +1,4 @@
-# Đồ án môn CSDLPT
+# Đồ án môn Cơ sở dữ liệu phân tán(CSDLPT) - Đề tài Quản Lý Điểm Sinh Viên
 ## Yêu cầu
 Giả sử  trường có 2 khoa chính : công nghệ thông tin (CNTT),  và viễn thông (VT)
 Phân tán cơ sở dữ liệu QLDSV ra làm 3 mảnh với điều kiện sau: 
@@ -46,7 +46,7 @@ Phiếu điểm gồm có các cột : STT, MÔN HỌC, ĐIỂM.
 | STT |	Họ và tên |	 Học phí  | Số tiền đã đóng |
 |---|---|---|---|
 |   |   |   |   |
-Tổng số sinh viên : ###\
+Tổng số sinh viên : ###
 Tổng số tiền đã đóng : #,###,##0 ( tiền chữ) 
 
 - Bảng điểm tổng kết: Bảng điểm tổng kết của 1 lớp dựa vào tên lớp nhập vào. Điểm thi là điểm lớn nhất của 2 lần thi. (Cross-Tab)\
