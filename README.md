@@ -25,12 +25,15 @@ User nhập vào thông tin, sau đó click nút Ghi để ghi dữ liệu vào 
 Chương trình cho phép ta tạo các login, password và cho login này làm việc với quyền hạn tương ứng. Căn cứ vào quyền này khi user login vào hệ thống, ta sẽ biết người đó được quyền làm việc với mảnh phân tán nào hay trên tất cả các phân mảnh. 
 ### 3. In ấn : gồm các mục sau:
 Danh sách sinh viên: Tùy thuộc vào quyền hạn của login mà ta cho phép chọn khoa – lớp để in.  
-Danh sách thi hết môn: yêu cầu tương tự như in danh sách sinh viên. User nhập vào tên lớp, tên môn học ,  Ngày thi, lần thi. Danh sách này chỉ in các sinh viên còn đi học. Chương trình sẽ in ra phiếu điểm thi có dạng sau:
-DANH SÁCH THI  HẾT MÔN
-	Lớp :  xxxxxxxxxxxxxxxxxxxx
-	Môn học : xxxxxxxxxxxxxxxxx
+Danh sách thi hết môn: yêu cầu tương tự như in danh sách sinh viên. User nhập vào tên lớp, tên môn học ,  Ngày thi, lần thi. Danh sách này chỉ in các sinh viên còn đi học. Chương trình sẽ in ra phiếu điểm thi có dạng sau:\
+DANH SÁCH THI  HẾT MÔN\
+	Lớp :  xxxxxxxxxxxxxxxxxxxx\
+	Môn học : xxxxxxxxxxxxxxxxx\
 	Ngày thi: dd/mm/yyyy
-STT	Mã SV	Họ và tên	Số tờ	Điểm	Chữ ký
+
+|  STT |  Mã SV |  Họ và tên | Số tờ  |  Điểm | Chữ ký |
+|---|---|---|---|---|---|
+|   |   |   |   |   |   |
 
 - Bảng điểm môn học: yêu cầu tương tự như in danh sách sinh viên. Bảng điểm môn học của 1 lớp dựa vào : tên lớp, tên môn học, lần thi. Trong đó, tên lớp và tên môn học cho phép user chọn từ trong danh sách tương ứng.
 
@@ -39,14 +42,20 @@ Phiếu điểm gồm có các cột : STT, MÔN HỌC, ĐIỂM.
   Điểm là điểm Max của 2 lần thi 1 và 2 (nếu có).
 
 - In danh sách đóng học phí của lớp: User phòng kế toán nhập vào mã lớp, niên khóa, học kỳ, chương trình sẽ in ra thông tin đóng học phí của sinh viên của niên khóa, học kỳ đó. Sinh viên nào chưa đóng cũng in ra.
-STT	Họ và tên	Học phí	Số tiền đã đóng
-Tổng số sinh viên : ###
+
+| STT |	Họ và tên |	 Học phí  | Số tiền đã đóng |
+|---|---|---|---|
+|   |   |   |   |
+Tổng số sinh viên : ###\
 Tổng số tiền đã đóng : #,###,##0 ( tiền chữ) 
 
-- Bảng điểm tổng kết: Bảng điểm tổng kết của 1 lớp dựa vào tên lớp nhập vào. Điểm thi là điểm lớn nhất của 2 lần thi. (Cross-Tab)
-BẢNG ĐIỂM TỔNG KẾT
+- Bảng điểm tổng kết: Bảng điểm tổng kết của 1 lớp dựa vào tên lớp nhập vào. Điểm thi là điểm lớn nhất của 2 lần thi. (Cross-Tab)\
+BẢNG ĐIỂM TỔNG KẾT\
 LỚP : XXXXXXXXXXXXX
-MASV-Họ tên	Môn học 1	Môn học 2	Môn học 3	Môn học 4	Môn học n
+
+| MASV | Họ tên |	Môn học 1 |	Môn học 2 |	Môn học 3 |	Môn học 4 |	Môn học n |
+|---|---|---|---|---|---|---|
+|   |   |   |   |   |   |   |
 ## Ghi chú
 Sinh viên tự kiểm tra các ràng buộc có thể có khi viết chương trình
  Lưu ý: Thực hiện việc truy vấn trên SQL Server.
@@ -55,5 +64,5 @@ Sinh viên tự kiểm tra các ràng buộc có thể có khi viết chương t
 - SQL Server 2014 Enterprise trở lên
 - Visual studio 2019 trở lên
 - DevExpress 2019 trở lên
-## Star if project useful for you
-## Fork if you gonna contribute
+### Star if project useful for you
+### Fork if you gonna contribute
